@@ -1,0 +1,71 @@
+﻿@model shopmohinh.Models.figs1GenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Đặt hàng</h1>
+
+<p>
+    <a asp-action="Create">tạo đơn hàng</a>
+</p>
+<form asp-controller="figs1" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <select asp-for="figsGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="tìm" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.figs[0].Title)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.figs[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.figs[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.figs[0].Price)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.figs[0].Rating)
+            </th>
+
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.figs)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">xóa</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
